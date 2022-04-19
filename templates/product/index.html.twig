@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title 'Products | ' ~ parent() %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/product.css') }}"/>
+{% endblock %}
+
+{% block body %}
+{{ include('composant/header.html.twig',{panier:panier}) }}  
+	<section id="Product">
+		<div class="product_header">
+			<div class="container">
+				<h3>Product List</h3>
+			</div>
+		</div>
+		<div class="container">
+			<div class="product_bloc mt-4">
+				<div class="row">
+					<div class="col-12 col-sm-3 col-md-3 col-lg-3">
+						{{form_start(filter_Form)}}
+						{{ form_row(filter_Form.category) }}
+
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								{{ form_row(filter_Form.minimumPrice) }}
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								{{ form_row(filter_Form.maximumPrice) }}
+							</div>
+						</div>
+						{{ form_row(filter_Form.product) }}
+						{{ form_row(filter_Form.search) }}
+						{{ form_end(filter_Form) }}
+					</div>
+					<div class="col-12 col-sm-9 col-md-9 col-lg-9">
+					    {% if products | length == 0 %}
+				         <h2 class="text-center">Products filter empty !!!</h2>
+						{% else %}
+				       
+						<div class="row">
+						{% for products in products %}
+							<div class="col-12 col-sm-4 col-md-4 col-lg-4 d-flex justif-content-center">
+								<div class="card" style="width: 18rem;">
+									<div class="image_card">
+										<img src="{{ asset('/uploads/produit/'~ products.image) }}" class="card-img-top" alt="...">
+									</div>
+									<div class="card-body">
+										<h5 class="text-center">{{products.libelle}}</h5>
+										<p class="">$ {{products.price}}.00</p>
+										<a href="{{ path('app_addCart',{'id':products.id}) }}" class="btn w-100">Add to cart</a>
+									</div>
+								</div>
+							</div>
+						 {% endfor %} 
+						</div>
+					{% endif %}
+						<div class=" d-flex justify-content-center mt-4" id="container_paginer">
+						{% do products.setPageRange(3) %}
+						{{ knp_pagination_render(products,'paginate.html.twig') }}
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

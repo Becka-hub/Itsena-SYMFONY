@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title 'Carts | ' ~ parent() %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/cart.css') }}"/>
+{% endblock %}
+
+{% block body %}
+{{ include('composant/header.html.twig',{ panier : panier}) }}
+	<section id="Cart">
+		<div class="cartHeader">
+			<div class="container">
+				<h3>Your Cart</h3>
+			</div>
+		</div>
+	<div class="container">
+		<div class="cart_bloc mt-3">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead align="center" class="table_thead">
+						<tr>
+							<th scope="col">Photo</th>
+							<th scope="col">Product</th>
+							<th scope="col">Price</th>
+							<th scope="col">Quantity</th>
+						    <th scope="col">Total</th>
+						    <th scope="col">Remove</th>
+						</tr>
+					</thead>
+					<tbody>
+                        {% if panier | length == 0 %}
+					     <tr><h2 class="text-center">Cart Empty !!!</h2></tr>
+						{% else %}
+						{% for panier in panier %}
+						<tr>
+						<td align="center"><img src="{{ asset('/uploads/produit/'~ panier.product.image) }}" alt="cart_img" class="image_cart"></td>
+						<td align="center" >{{panier.product.libelle}}</td>
+						<td align="center" >$ {{panier.product.price}}.00</td>
+						<td align="center" ><a href="{{ path('app_decrementCart',{'id':panier.product.id}) }}" class="moins btn">-</a> {{panier.quantity}} <a href="{{ path('app_addCart',{'id':panier.product.id}) }}" class="plus btn">+</a></td>
+						<td align="center" >$ {{ panier.product.price * panier.quantity }}.00</td>
+						<td align="center" ><a href="{{ path('app_removeCart',{'id':panier.product.id}) }}" class="remove btn">x</a></td>
+					    </tr>
+					    {% endfor %} 
+					    {% endif %}
+
+
+					</tbody>
+				</table>
+			</div>
+		  <div class="valide">
+		    <div class='total'>
+		    <h5 class="">Cart Totals</h5>
+		      <p>$ {{total}}.00</p>
+		   </div>
+		    <div class='check'>
+		      <a href="{{path('app_payment')}}" class="btn">Proceed To CheckOut</a>
+		     </div>
+	      </div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

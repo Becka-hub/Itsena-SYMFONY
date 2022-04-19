@@ -1,0 +1,112 @@
+#Payment{
+    padding-top: 75px;
+    padding-bottom: 20px;
+}
+.alert-danger{
+    background-color: red!important;
+    color:white!important;
+    height:40px!important;
+    font-size:15px!important;
+    padding:7px!important;
+}
+.alert-success{
+    background-color: rgb(16, 136, 0)!important;
+    color:white!important;
+    height:40px!important;
+    font-size:15px!important;
+    padding:7px!important;
+
+}
+.alert-warning{
+    background-color: rgb(211, 155, 0)!important;
+    color:white!important;
+    height:40px!important;
+    font-size:15px!important;
+    padding:7px!important;
+
+}
+.btn-close{
+    background-color:white!important;
+}
+#Payment .bloc_user{
+padding:40px;
+background-color:#ffa00b;
+box-shadow: 0px 2px 12px #ffa00b;
+}
+
+#Payment .bloc_user .image_user{
+    width:100px;
+    height:100px;
+    margin-bottom:20px;
+}
+#Payment .bloc_user .image_user img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    box-shadow: 0px 2px 12px white;
+}
+#Payment .bloc_user h5{
+    color:white;
+}
+
+#Payment .accordion .accordion-header button{
+    padding:10px!important;
+    border:none!important;
+    border-radius: 0!important;
+    background-color:#ffa00b;
+box-shadow: 0px 2px 12px #ffa00b;
+   color:white;
+}
+#Payment .accordion .accordion-body p{
+    text-align: center;
+}
+#Payment .accordion .accordion-body .total{
+    color:white;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    background-color: #ffa00b;
+    clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
+}
+#Payment .accordion .accordion-body i{
+    font-size: 25px;
+    color:red;
+    margin-top:10px;
+}
+#Payment .bloc_achat{
+    padding:20px;
+background-color:#ffff;
+box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.253);
+}
+#Payment .bloc_achat h5{
+    font-weight:600;
+}
+#Payment .bloc_achat p{
+    text-align:center;
+}
+#Payment .bloc_achat .total{
+    color:white;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    background-color: #ffa00b;
+    clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
+}
+#Payment .bloc_payment{
+  padding-top:18px;
+  padding-left:70px;
+  padding-right:70px;
+}
+#Payment .bloc_payment input{
+    border-radius:0!important;
+}
+#Payment .bloc_payment input:focus{
+    box-shadow:none!important;
+}
+#Payment .bloc_payment .btn{
+    background-color:#ffa00b!important;
+    color:white;
+}

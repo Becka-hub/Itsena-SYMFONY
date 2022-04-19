@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Home | ' ~ parent() %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}"/>
+{% endblock %}
+
+{% block body %}
+   {{ include('composant/header.html.twig',{panier:panier}) }}    
+	<section id="Home">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+					<div class="logo_tsena d-flex justify-content-center">
+						<img src="{{ asset('image/image.png')}}" alt="logo_tsena">
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+					<div class="titre_home ">
+						<div class="d-flex justify-content-center">
+							<div class="d-flex mt-4">
+								<div class="text_image">
+									<img src="{{asset('image/logo.jpg')}}" alt="logo_itsena" class="me-2">
+								</div>
+								<h1 class="ms-3 titre">
+									<strong class="i">I</strong>-<strong class="tsena">tsena</strong>
+								</h1>
+							</div>
+						</div>
+						<div class="description_home">
+							<p>Itsena c'est une aplication ecommerce, qu'on ventents des différent produit.
+							Cette site web c'est juste un application demo et merci d'avoir prit le temp de le tester.</p>
+						</div>
+						<div class=" mt-4 d-flex justify-content-center">
+							<a href="#Speciale" class="btn btn_home">
+								<i class="fa fa-arrow-circle-o-down"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="Category">
+		<div class="container">
+			<div class="titre_category">
+				<h2>CATEGORY</h2>
+			</div>
+			<div
+				class="owl-carousel category-carousel">
+				<!--Bloc 1-->
+				{% for category in category %}
+				<div class="category-wrap">
+					<div class="category-item">
+						<img src="{{ asset('/uploads/category/'~ category.image) }}" class="membre-img" alt=""/>
+						<h3>{{category.libelle}}</h3>
+						<a href="{{path('app_category',{id:category.id})}}" class="btn">View</a>
+					</div>
+				</div>
+				<!--Fin bloc 1-->
+			{% endfor %}
+			</div>
+		</section>
+		<section id="Speciale">
+			<div class="container">
+				<div class="special_titre d-flex justify-content-center">
+					<h2 class="text-center">Special Selection</h2>
+				</div>
+				<div class="bloc_speciale">
+					<div class="row">
+                        {% for product in product %}
+						<div class="col-12 col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
+							<div class="card" style="width: 18rem;">
+								<div class="card_img">
+									<img src="{{ asset('/uploads/produit/'~ product.image) }}" class="card-img-top" alt="image_card">
+								</div>
+								<div class="card-body">
+									<h5 class="text-center">{{product.libelle}}</h5>
+									<p>$ {{product.price}}.00</p>
+									<a href="{{ path('app_addCart',{'id':product.id}) }}" class="btn">Add to cart</a>
+								</div>
+							</div>
+						</div>
+		               {% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Pub">
+			<div class="container">
+				<div class="bloc_pub">
+					<div class="row">
+						<div class="col-12 col-sm-6 col-md-6 col-lg-6">
+							<div class="arrival">
+								<div class="arrival_content">
+									<h2 class="text-center">New products
+										<i class="fa fa-shopping-cart"></i>
+									</h2>
+									<h3 class="text-center">FOOD DELIVER</h3>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center">
+							<div class="image_food image_none">
+								<img src="{{asset("image/food.png")}}" alt="image_foo">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="Food">
+			<div class="container">
+				<div class="food_titre d-flex justify-content-center">
+					<h2 class="text-center">Food deliver</h2>
+				</div>
+				<div class="bloc_food">
+					<div class="row">
+					{% for food in food %}
+						<div class="col-12 col-sm-6 col-md-6 col-lg-6 p-3">
+							<div class="card_food">
+								<div class="image_food">
+									<img src="{{ asset('/uploads/produit/'~ food.image) }}" alt="food_image">
+								</div>
+								<div class="description_food">
+									<h5 class="text-center">{{food.libelle}}</h5>
+									<p>$ {{food.price}}.00</p>
+									<a href="{{ path('app_addCart',{'id':food.id}) }}" class="btn">Add to cart</a>
+
+								</div>
+							</div>
+						</div>
+                    {% endfor %}
+			
+					</div>
+				</div>
+			</div>
+		</section>
+		{{ include('composant/footer.html.twig') }}  
+	{% endblock %}
+	{% block javascripts %}
+		{{ parent() }}
+		<script>
+			$(document).ready(function () {
+$(".category-carousel").owlCarousel({
+autoplay: true,
+dots: true,
+loop: true,
+responsive: {
+0: {
+items: 1
+},
+768: {
+items: 3
+},
+900: {
+items: 4
+}
+}
+});
+});
+		</script>
+	{% endblock %}

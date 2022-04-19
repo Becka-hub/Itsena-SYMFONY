@@ -1,0 +1,83 @@
+#Cart{
+    width:100%;
+    padding-top:50px;
+    padding-bottom:20px;
+}
+#Cart .cartHeader{
+    background-color: #ffa00b;
+    padding:30px;
+}
+#Cart .cartHeader h3{
+    color:white;
+    font-weight:600;
+}
+#Cart .table_thead{
+    background-color: #ffa00b;
+    color:white;
+}
+
+#Cart .image_cart{
+    height:40px;
+    width:100px;
+    object-fit:cover;
+}
+#Cart .moins{
+ background-color: #b5b5b5;
+  color:white;
+  margin-right:10px;
+  border-radius:50%;
+}
+#Cart .moins:focus{
+    box-shadow:none!important;
+}
+#Cart .plus{
+    background-color: #b5b5b5;
+    color:white;
+    margin-left:10px;
+    border-radius:50%;
+}
+#Cart .plus:focus{
+    box-shadow:none!important;
+}
+
+#Cart .remove{
+    background-color: #b5b5b5;
+    color:white;
+    border-radius:50%;
+}
+#Cart .remove:focus{
+    box-shadow:none!important;
+}
+#Cart .valide{
+    display:flex;
+    justify-content:space-between;
+    border:1px solid  #b5b5b5;
+    padding:10px;
+    border-radius:5px;
+}
+
+#Cart .valide .total{
+    display:flex;
+    margin-top:5px;
+}
+#Cart .valide .total h5{
+    font-weight: 600;
+}
+#Cart .valide .total p{
+    margin-left:10px;
+    margin-top: 2px;
+}
+
+#Cart .valide .check a{
+    padding-left:25px;
+    padding-right:25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ffa00b;
+    color: white;
+    border: none!important;
+    border-radius: 0!important;
+}
+#Cart .valide .check a:focus{
+    box-shadow: none!important;
+}

@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% block title 'Payement | ' ~ parent() %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/payment.css') }}"/>
+{% endblock %}
+{% block body %}
+	{{ include('composant/header.html.twig',{panier:panier}) }}
+	<section id="Payment">
+		<div class="container">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success my-2 d-flex justify-content-between">
+					<strong>Success!</strong>
+					{{ message }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-warning my-2 d-flex justify-content-between">
+					<strong>Error!</strong>
+					{{ message }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			{% endfor %}
+			<div class="row">
+				<div class="col-12 col-sm-4 col-md-4 col-lg-4">
+					<div class="bloc_user">
+						<div class="d-flex justify-content-center">
+							<div class="image_user">
+								<img src="{{ asset('/uploads/user/'~ app.user.photo) }}"/>
+							</div>
+						</div>
+						<h5 class="text-center">{{app.user.name}}</h5>
+						<h5 class="text-center">{{app.user.FirstName}}</h5>
+						<h5 class="text-center">{{app.user.adress}}</h5>
+						<h5 class="text-center">{{app.user.email}}</h5>
+					</div>
+					<div class="accordion mt-4" id="accordionExample">
+					    {% if order | length == 0 %}
+						  <div class="accordion-item">
+							<h2 class="accordion-header" id="headingOne">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Empty !!!
+								</button>
+							</h2>
+						</div>
+						{% else %}
+                     
+                         {% for order in order %}
+						 <div class="accordion-item">
+						 <h2 class="accordion-header" id="headingOne">
+							 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							 {{order.createdAt | date }}
+							 </button>
+						 </h2>
+						 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							 <div class="accordion-body ">
+								 <p>{{order.shopping}}</p>
+								 <div class="d-flex justify-content-between">
+									 <div class="total">$ {{order.totalPrice}}.00</div>
+									 <a href="{{path('app_deleteOrder',{id:order.id})}}">
+										 <i class="fa fa-trash-o"></i>
+									 </a>
+								 </div>
+
+							 </div>
+						 </div>
+						</div>
+						{% endfor %}
+                        {% endif %}
+                  
+						
+					</div>
+				</div>
+				<div class="col-12 col-sm-8 col-md-8 col-lg-8">
+					<div class="bloc_achat">
+						<div class="d-flex justify-content-between">
+							<h5>Your Order</h5>
+							<h6>{{panier | length}} Items</h6>
+						</div>
+						<hr>
+							{% for panier in panier %}
+						<p>  </p>
+						<p>{{panier.product.libelle}}({{panier.quantity}}) {{panier.quantity}}x{{panier.product.price}} = $ {{panier.product.price * panier.quantity}}.00</p>
+						{% endfor %}
+						<div class="d-flex justify-content-center">
+							<div class="total">$ {{total}}.00</div>
+						</div>
+					</div>
+					<div class="bloc_payment">
+						<h5>Payement</h5>
+						{{
+						form_start(
+							orderForm,
+						  {
+							action: path('app_pay'),
+							method: 'POST'
+						  }
+						)
+					  }}
+						{{ form_widget(orderForm) }}
+						{{ form_end(orderForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
